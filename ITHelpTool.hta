@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>IT Help Tool</title>    
+<HTA:Application
+    ApplicationName="ITHELPTOOL"
+    ID="MsgBox"
+
+        InnerBorder="no"
+        MaximizeButton="no"
+        MinimizeButton="no"
+        Scroll="no"
+        contextmenu="no"
+        Selection="no"
+        SingleInstance="yes"
+        Border="thin"
+        icon="DevicePairingWizard.exe"
+
+/>
+
+<script language="vbscript">    
+
+Sub Window_OnLoad()
+    window.resizeTo 350, 240
+    window.moveTo   screen.width/2, screen.height/2
+End Sub
+
+
+Function driveBtn()
+    Set objNetwork = CreateObject("WScript.Network")
+    objNetwork.MapNetworkDrive "N:", "\\DRIVE_SHARE\DRIVE"
+End Function
+
+Function printBtn()
+	Set objNet = Createobject ("WScript.Network")
+	objNet.AddWindowsPrinterConnection "\\PRINT_SHARE\PRINTER"
+End Function
+
+Function helpBtn()
+    document.getElementById("msgArea").innerHTML =  "Call xxxx for Tech Support"
+End Function
+
+
+</script>
+
+<style>
+
+    body {
+        margin: 0;
+        padding:0px;
+        font-family: 'Segoe UI', monospace;
+        font-size: 10pt;
+    
+    }
+
+    #msgArea {
+        margin: 5px;
+        padding-bottom: 50px;
+        
+    }
+
+    #BtnArea {
+        position: absolute;
+        bottom: 0px;
+        background-color: #f0f0f0;
+        height: 48px;
+        width: 100%;
+        text-align: right;
+        padding: 10px;
+        font-family: 'Segoe UI', monospace;
+        
+    }
+
+    button {
+        width: 85px;
+        position: relative;
+        right: 7.5px;
+        margin-left: 5px;
+
+    }
+
+</style>
+
+
+</head>
+<body>
+
+
+<div id="msgArea">
+<h4>Welcome to IT Help</h4>
+Connect to network printer -> <i>Printer</i> <br/>
+Connect to network drive -> <i>Exchange</i> <br/>
+Need more help? -> <i>Help</i> <br/>
+</div>
+
+<br>
+</br>
+
+<div id="BtnArea">
+<button onclick="printBtn">Printer</button>
+<button onclick="driveBtn">Exchange</button>
+<button onclick="helpBtn">Help</button>
+
+
+</div>
+
+</body>
+</html>
